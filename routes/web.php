@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\posts;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +19,15 @@ Route::get('pagina2', function(){
 Route::get('pagina3', function(){
     return view(view: 'pagina3');
 });
+
+Route::get('/newposttest', function(){
+
+    $x = new Post();
+    $x->title = "Mijn titel";
+    $x->body = "Dit is de inhoud";
+    $x->save();
+
+    return "done";
+});
+
+Route::resource('posts', PostController::class);
